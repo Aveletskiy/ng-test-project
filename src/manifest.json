@@ -1,0 +1,21 @@
+{
+  "name": "ng-test-project",
+  "short_name": "ng-test-project",
+  "theme_color": "#488aff",
+  "background_color": "#488aff",
+  "scope": "/",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "assets/sponge-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/sponge-logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
