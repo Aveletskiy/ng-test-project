@@ -15,7 +15,7 @@ if (environment.production) {
   enableProdMode();
 }
 
-const bootstrap = () => platformBrowserDynamic().bootstrapModule(AppModule, {ngZoneEventCoalescing: true});
+const bootstrap = () => platformBrowserDynamic().bootstrapModule(AppModule, { ngZoneEventCoalescing: true });
 
 if (environment.hmr) {
   hmrBootstrap(module, bootstrap);

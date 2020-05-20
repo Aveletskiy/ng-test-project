@@ -1,0 +1,79 @@
+<app-document-viewer *ngIf="!(alreadyApproved$ | async)" [documentId]="documentId"></app-document-viewer>
+
+<ng-container *ngIf="alreadyLoaded$ | async; else loading">
+  <form [formGroup]="approveForm" novalidate>
+    <div class="alert alert-danger" [hidden]="!error || isLoading" translate>
+      Approval selection are not filled
+    </div>
+    <div class="form-group">
+      <span translate>Approver</span>
+      <label class="d-block">
+        <input type="text" class="form-control" formControlName="approver" [placeholder]="'Approver' | translate" />
+        <small
+          [hidden]="approveForm.get('approver').valid || approveForm.get('approver').untouched"
+          class="text-danger"
+          translate
+        >
+          Approver is required
+        </small>
+      </label>
+
+      <div class="form-group">
+        <span>Resolution</span>
+        <div
+          class="w-100"
+          [class.error-control]="approveForm.get('resolution').invalid && approveForm.get('resolution').touched"
+        >
+          <ng-select
+            class="w-100"
+            [multiple]="false"
+            [items]="resolutions$ | async"
+            formControlName="resolution"
+            [placeholder]="'Chose resolution type' | translate"
+            bindLabel="label"
+          >
+          </ng-select>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="form-group"
+      [class.error-control]="!approveForm.get('comment').valid && approveForm.get('comment').touched"
+    >
+      <label>Comment</label>
+      <textarea
+        class="form-control"
+        [placeholder]="'You can leave a comment' | translate"
+        [formControl]="approveForm.get('comment')"
+        rows="2"
+        cols="1"
+      ></textarea>
+    </div>
+  </form>
+
+  <div class="approval-controls d-flex">
+    <button class="btn btn-success mr-3" [disabled]="approveForm.invalid || isLoading" (click)="sendApproval(1)">
+      <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i>
+      <span translate>Accept</span>
+    </button>
+    <button class="btn btn-danger" [disabled]="approveForm.invalid || isLoading" (click)="sendApproval(0)">
+      <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i>
+      <span translate>Decline</span>
+    </button>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="approvalResponse$ | async as response">
+  <h4 class="success-approve-text">
+    {{ response.message }}
+  </h4>
+  <button class="btn btn-primary mt-3" (click)="resetForm()">
+    <i class="fas fa-cog fa-spin"></i>
+    <span translate>Try again</span>
+  </button>
+</ng-container>
+
+<ng-template #loading>
+  <app-loader></app-loader>
+</ng-template>

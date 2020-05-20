@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from '@env/environment';
 
-/**
+/**e
  * Prefixes all requests not starting with `http[s]` with `environment.serverUrl`.
  */
 @Injectable({

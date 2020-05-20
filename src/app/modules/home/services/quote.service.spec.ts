@@ -5,7 +5,7 @@ import { QuoteService } from '@app/modules/home/services/quote.service';
 
 import { CoreModule } from '@core';
 
-describe('QuoteService', () => {
+describe('DocumentsService', () => {
   let quoteService: QuoteService;
   let httpMock: HttpTestingController;
 

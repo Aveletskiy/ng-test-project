@@ -8,7 +8,7 @@ import {
   AuthenticationService,
   CredentialsService,
   MockAuthenticationService,
-  MockCredentialsService
+  MockCredentialsService,
 } from '../../../auth';
 
 import { I18nModule } from '@app/i18n';

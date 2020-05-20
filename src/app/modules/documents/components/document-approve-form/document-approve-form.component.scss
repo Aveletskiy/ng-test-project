@@ -1,0 +1,18 @@
+.approval-controls {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.success-approve-text {
+  font-weight: 900;
+  color: #28a745;
+}
+
+@media screen and (max-width: 486px) {
+  .approval-controls {
+    justify-content: space-around;
+    button {
+      margin: 0;
+    }
+  }
+}

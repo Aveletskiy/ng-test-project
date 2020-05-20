@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs';
 import { Logger } from '@core/services/logger.service';
 import enUS from '../../../translations/en-US.json';
 
-
 const log = new Logger('I18nService');
 const languageKey = 'language';
 

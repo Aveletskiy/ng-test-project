@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { untilDestroyed } from '@core';
 
@@ -8,28 +8,12 @@ import { QuoteService } from '../../services';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  quote: string | undefined;
-  isLoading = false;
+  constructor() {}
 
-  constructor(private quoteService: QuoteService) {}
+  ngOnInit() {}
 
-  ngOnInit() {
-    this.isLoading = true;
-    this.quoteService
-      .getRandomQuote({ category: 'dev' })
-      .pipe(
-        finalize(() => {
-          this.isLoading = false;
-        }),
-        untilDestroyed(this)
-      )
-      .subscribe((quote: string) => {
-        this.quote = quote;
-      });
-  }
-
-  ngOnDestroy(): void {
-  }
+  ngOnDestroy(): void {}
 }

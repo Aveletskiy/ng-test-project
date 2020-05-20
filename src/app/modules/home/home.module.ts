@@ -6,22 +6,13 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CoreModule } from '@core';
 import { SharedModule } from '@shared';
 import { HomeRoutingModule } from './home-routing.module';
-
-// services
-import { QuoteService } from './services';
+import { DocumentsModule } from '@app/modules/documents/documents.module';
 
 // components
 import { HomeComponent } from './components';
 
-
 @NgModule({
-  imports: [
-    CommonModule,
-    TranslateModule,
-    CoreModule,
-    SharedModule,
-    HomeRoutingModule
-  ],
+  imports: [CommonModule, TranslateModule, CoreModule, SharedModule, DocumentsModule, HomeRoutingModule],
   declarations: [HomeComponent],
 })
 export class HomeModule {}

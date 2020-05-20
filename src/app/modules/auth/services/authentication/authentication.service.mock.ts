@@ -9,7 +9,6 @@ export class MockAuthenticationService {
   };
 
   public login(context: LoginContext): Observable<Credentials> {
-    debugger
     return of({
       username: context.username,
       token: '123456',

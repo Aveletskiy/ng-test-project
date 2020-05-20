@@ -5,7 +5,7 @@ import { RouteReuseStrategy, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { RouteReusableStrategy } from '@core/services';
-import { ApiPrefixInterceptor, ErrorHandlerInterceptor } from '@core/http';
+import { ApiPrefixInterceptor, ErrorHandlerInterceptor, BackendInterceptor } from '@core/http';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule, TranslateModule, RouterModule],
@@ -13,6 +13,11 @@ import { ApiPrefixInterceptor, ErrorHandlerInterceptor } from '@core/http';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiPrefixInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BackendInterceptor,
       multi: true,
     },
     {

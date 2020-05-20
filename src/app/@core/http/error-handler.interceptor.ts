@@ -6,8 +6,6 @@ import { catchError } from 'rxjs/operators';
 import { environment } from '@env/environment';
 import { Logger } from '@core/services';
 
-
-
 /**
  * Adds a default error handler to all requests.
  */

@@ -8,12 +8,16 @@ const HttpsProxyAgent = require('https-proxy-agent');
  */
 const proxyConfig = [
   {
-    context: '/api',
-    pathRewrite: { '^/api': '' },
-    target: 'https://api.chucknorris.io',
-    changeOrigin: true,
-    secure: false
-  }
+    '/api': {
+      target: 'http://localhost:3000',
+      secure: false,
+      pathRewrite: {
+        '^/api': '',
+      },
+      changeOrigin: true,
+    },
+    logLevel: 'debug',
+  },
 ];
 
 /*
@@ -30,10 +34,12 @@ function setupForCorporateProxy(proxyConfig) {
   if (proxyServer) {
     console.log(`Using corporate proxy server: ${proxyServer}`);
     agent = new HttpsProxyAgent(proxyServer);
-    proxyConfig.forEach(entry => { entry.agent = agent; });
+    proxyConfig.forEach((entry) => {
+      entry.agent = agent;
+    });
   }
 
   return proxyConfig;
 }
 
-module.exports = setupForCorporateProxy(proxyConfig);
+module.exports = proxyConfig[0];

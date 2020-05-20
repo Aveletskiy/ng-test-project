@@ -3,7 +3,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { CoreModule } from '@core';
 import { TranslateModule } from '@ngx-translate/core';
 
-
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
